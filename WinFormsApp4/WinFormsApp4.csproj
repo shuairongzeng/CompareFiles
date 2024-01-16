@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="11Form1 - 副本.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="gaomeinan-vmware-vmx.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

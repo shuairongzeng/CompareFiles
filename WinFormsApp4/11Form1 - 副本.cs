@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Net;
@@ -18,8 +19,10 @@ namespace WinFormsApp4
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            string fileAPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gaomeinan-vmware-vmx.exe");
-            string fileBPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "normol-vmware-vmx.exe");
+            //string fileAPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gaomeinan-vmware-vmx.exe");
+            //string fileBPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "normol-vmware-vmx.exe");
+            string fileAPath =txt_firstPath.Text;
+            string fileBPath =txt_secondPath.Text;
             string outputPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "differences.txt");
             if (File.Exists(outputPath))
             {
@@ -177,15 +180,17 @@ namespace WinFormsApp4
                 }
             }
 
-
-            compareModels.ForEach(x =>
-            {
-                if (x != null && !outCompareModels.Any(c => c.Offset == x.Offset))
-                {
-                    Debug.WriteLine($"Offset {x.Offset:X} {AddOffset(x.Offset, compareModels)}");
-                    callback?.Invoke($"Offset {x.Offset:X} {AddOffset(x.Offset, compareModels)}");
-                }
-            });
+            //int kj = 0;
+            //compareModels.ForEach(x =>
+            //{
+            //    kj++;
+            //    if (x != null && !outCompareModels.Any(c => c.Offset == x.Offset))
+            //    {
+            //        Debug.WriteLine($"Offset {x.Offset:X} {AddOffset(x.Offset, compareModels)}");
+            //        callback?.Invoke($"Offset {x.Offset:X} {AddOffset(x.Offset, compareModels)}");
+            //    }
+            //    progressCallback((int)(kj * 100 / compareModels.Count));
+            //});
 
 
         }
@@ -208,6 +213,12 @@ namespace WinFormsApp4
                 return valueString += AddOffset(compareModel.Offset, compareModels);
             }
             return valueString;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            txt_firstPath.Text= Path.Combine("K:","vmx", "vmware-vmx12.5.9.exe");
+            txt_secondPath.Text = Path.Combine("K:", "vmx", "vn12.5.9xdgvmware-vmx.exe");
         }
     }
 }
